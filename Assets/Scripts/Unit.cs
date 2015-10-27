@@ -2,13 +2,19 @@
 using System.Collections;
 
 public class Unit : MonoBehaviour {
+	
+	public Transform start;
     public Transform target;
+
     public float speed = 20;
     Vector3[] path;
     int targetIndex;
 
+    public bool drawPathGizmos;
+
     void Start()
     {
+    	transform.position = start.position;
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
@@ -47,7 +53,7 @@ public class Unit : MonoBehaviour {
 
     public void OnDrawGizmos()
     {
-        if (path != null)
+        if (path != null && drawPathGizmos)
         {
             for (int i = targetIndex; i < path.Length; i++)
             {
