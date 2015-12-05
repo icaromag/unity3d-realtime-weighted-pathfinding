@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class Grid : MonoBehaviour
 {
 	public bool displayGridGizmos;
-    public Transform player;
-    public LayerMask unwalkableMask;
+    public bool invertWalkablePaths;
+
     public Vector2 gridWorldSize;
     public float nodeRadius;
+    public LayerMask unwalkableMask;
+    
+    public Transform player;
+
     Node[,] grid;
 
     float nodeDiameter;
@@ -39,6 +43,7 @@ public class Grid : MonoBehaviour
             {
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool walkable = (Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));//É SÓ NEGAR AQUI PARA TORNAR UNWALKABLE
+if(invertWalkablePaths) walkable = !walkable;
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
             }
         }
@@ -91,8 +96,8 @@ public class Grid : MonoBehaviour
 				
 			foreach (Node n in grid)
 			{
-				Gizmos.color = (n.walkable) ? Color.red : Color.white;//modifyed to switch collors
 
+				Gizmos.color = (n.walkable) ? Color.red : Color.white;//modifyed to switch collors
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
 					
 			}

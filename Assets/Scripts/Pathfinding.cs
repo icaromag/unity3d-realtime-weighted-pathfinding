@@ -99,6 +99,7 @@ public class Pathfinding : MonoBehaviour
 
         requestManager.FinishedProcessingPath(waypoints, pathSuccess);
 
+
     }//FindPath
 
 	Vector3[] RetracePath(Node startNode, Node endNode)
