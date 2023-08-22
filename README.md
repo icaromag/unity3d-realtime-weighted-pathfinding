@@ -21,4 +21,4 @@ Different weights are applied all over the map's surface, and the entities behav
 ![Weights](https://github.com/icaromagalhaes/realtime-weighted-pathfinding-unity3d/blob/master/Assets/Images/image00.png)
 
 ## Contributors
-Ícaro Magalhães - icaro.lmag@gmail.com
+Ícaro Magalhães
